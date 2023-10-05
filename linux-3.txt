@@ -1,0 +1,298 @@
+#####linux training 
+History of Linux:
+- 1969: the development of C language and the Unix operating system at AT&T bell labs.
+- 1975: AT&T started selling Unix commercially.
+- 1980: SunOS, HP-UX, and a dozen of other GNU project started springing up (GNU) is not Linux
+- 1991: Linus Torvalds, wrote a new POSIX compliant kernel, putting the source code online for free and this began the what we now know as opensource.
+- 2015: more than 97% of the worlds supercomputers ad written in Linux.
+
+Distributions of Linux:
+RedHat: Billion dollare commercial linux company known for RHEL 
+Ubuntu: SouthAfrican based linux company known for sending free compact disc in 2004 and quickly became popular for home Users
+Debian: No company behind this rather thousands of well organized developers that elect a Debian Project Leader. One of the most stable Linux distributions
+
+# Commands Linux:
+man: manual
+whatis: 
+whereis
+
+# Working with Directories 
+pwd: present working directory 
+cd: change directory
+ls: list files in current directory
+mkdir: create a directory
+rmdir: remove a directory
+
+
+# Working with Files 
+touch: create a file
+cp: copy
+rm: remove a file
+mv: move a file
+rename: rename a file
+
+
+# Working with file contents
+head: Displays the first 10 lines of a file
+tail: 
+cat/ concatenate: :
+tac: 
+more:
+less:
+string
+
+#filesystem hierachy standard
+
+#file permissions
+
+r - read (4)
+w - write (2)
+x - execute (1)
+
+d/ rwxr-xr-x  2 root      root              4096 Aug  2 17:28 apt
+d/ file-type 
+rwx/r-x/r-x: permissions (651)
+rwx - User
+r-x - Group
+r-x - Others 
+root: User
+root Group owner
+
+# Commands and arguments
+echo: 
+#Users and groups
+#Managing groups
+#File Permissions
+#SSH 
+#Linux Process Management
+#Linux File System, Virtual Storage, Mounting Storage
+#Application Package Management, Package index, Package Manager 
+#Further Study
+#file transfer
+
+-=directory
+rw-= Users
+r-x= groups 
+---= Others
+
+d
+rwx=User 7
+rwx=group 7
+r-x
+
+#Create Users in Linux
+useradd: create a new useradd group
+usermod: add a user to an exsting Group
+groupadd: add a new group
+
+#commands and arguments
+echo 
+type
+which 
+alias
+set 
+commands: extermal or builtin commands
+/sbin /bin 
+
+#control operators
+; semicolon
+& ampersand 
+$? dollar question mark
+&& and
+|| double verical bar (logical OR)
+# comment
+\ escape character or end of line
+
+#Shell Variables
+$ shell variable 
+    Inbuilt variable $USER, $SHELL, $UID, $GID, $
+    User defined variable
+
+quotes
+    single quotes
+    double quotes
+
+$PATH variable
+env environment variable
+export 
+delineate Variables
+unbound Variables
+
+
+Shell Embeding 
+shell commands can be embedded on the command line
+
+#I/O redirections
+#input/output
+
+stdin (input)
+stdout (output)
+stderr (error output)
+
+2>&1
+redirect both stdout and stderr to the same file 
+
+<<< here string 
+used to directly pass strings to a command
+
+#Bash Scripting
+Bash scripting: a command language for Linux
+bash: Bourne-Again Shell
+
+Bash Variables
+User Input 
+Comments
+Arguments
+Arrays 
+Conditional Expressions, Conditionals
+Loops 
+Functions 
+Debugging
+testing
+
+#Bash Structure
+#!/bin/bash (shebang) : this is the openning statement for writing a bash script 
+
+chmod +x "name-of-the script" : this is used to make the script executable
+
+#Bash Variables
+name="john Doe"
+
+#GIT
+# Install git on Ubuntu
+apt install git 
+#verify git was installed 
+git --version
+
+#clone a repository
+git clone "https://<name of repository>/repository.git"
+
+#Git 
+# a distributed version control system 
+# free and opensource software
+# designed to handle everything from small to large projects with speed and efficiency
+# easy to learn and has very tiny footprint with lightning fast performance
+
+#git commits
+#these are snapshots of your code saved as commits
+
+#Pull request 
+# this represents a change, such adding, modifying or removing
+#Github flow
+#Git commands
+#view your configurations 
+# git config --list 
+# git config --global --list
+# configure username and email 
+# git config --global user.name "First Last"
+# git config --global user.email "email address"
+# git status 
+# git add <name of your file>
+# git commit -m <name of your commit message>
+# git push <name of your remote> <name of your branch>
+# git branch (branch locally)
+# git branch --all -a 
+# git checkout <branch name> (switch to a branch)
+# git checkout -b <branch name> (switch to a branch and create a new branch)
+
+# The two stage Commit 
+working directory
+staging directory
+History
+
+# The four states of git 
+#untracked 
+#modified 
+#staged 
+#committed
+
+#compare commits 
+#diff
+
+#pull requests to review your code
+#git Comments
+#line comments, 
+
+#clean unwanted branches 
+# git branch --all 
+# git branch --merged 
+# git branch -d <name of branch>
+# git pull --prune 
+
+#logs
+# git log --pretty=oneline
+# git log --online
+# git log --onlie --graph 
+# git log --stat 
+# git log --patch
+
+#How to resolve merge conflict 
+Resolving a Merge Conflict
+Let's try to create a merge conflict, and fix it together. You and a partner will each create separate branches, create a
+file with the same name, and then try to merge. The first will merge cleanly, the second will have a merge conflict.
+Work together to resolve the merge conflict.
+1. In our class repository, create the branch that you will be working on and name it something memorable like
+USERNAME-conflict .
+2. Choose a file that both you and your partner will edit. (One of your files from earlier would work well.) On your
+branch, edit that file. The file name must be the same file name that your partner uses. Make sure the content
+inside of the file is different, and that neither file is empty.
+3. Create a pull request in the class repository with base: master and compare: USERNAME-conflict .
+4. You will see that the first pull request can merge well.
+5. When you see the merge conflict in the second pull request, work together to resolve the merge conflict.
+i. Working locally, merge master into the feature branch.
+ii. When you see there's a conflict, that's OK! The files that have conflicts are listed under Unmerged Paths .
+Type git status to verify which file has the conflict.
+iii. Open that file in your text editor, and look for the merge conflict markers. ( <<<<<<< , ======= , >>>>>>> )
+iv. Both branches' versions of code are present - pick which one you want to keep, and save the changes.
+v. Add and commit the saved changes to resolve the merge conflict.
+vi. Push the feature branch up to the remote, and see the resolution in the pull request.
+6. Merge the pull request.
+
+###PROJECT####
+
+Project Task: Deployment of Vagrant Ubuntu Cluster with LAMP Stack
+
+Objective:
+Develop a bash script to orchestrate the automated deployment 
+of two Vagrant-based Ubuntu systems, 
+designated as 'Master' and 'Slave', 
+with an integrated LAMP stack on both systems.
+
+Specifications:
+
+    Infrastructure Configuration:
+        Deploy two Ubuntu systems:
+            Master Node: This node should be capable of acting as a control system.
+            Slave Node: This node will be managed by the Master node.
+
+    User Management:
+        On the Master node:
+            Create a user named altschool.
+            Grant altschool user root (superuser) privileges.
+
+    Inter-node Communication:
+        Enable SSH key-based authentication:
+            The Master node (altschool user) should seamlessly SSH into the Slave node without requiring a password.
+
+    Data Management and Transfer:
+        On initiation:
+            Copy the contents of /mnt/altschool directory from the Master node to /mnt/altschool/slave on the Slave node. This operation should be performed using the altschool user from the Master node.
+
+    Process Monitoring:
+        The Master node should display an overview of the Linux process management, showcasing currently running processes.
+
+    LAMP Stack Deployment:
+        Install a AMP (Apache, MySQL, PHP) stack on both nodes:
+            Ensure Apache is running and set to start on boot.
+            Secure the MySQL installation and initialize it with a default user and password.
+            Validate PHP functionality with Apache.
+
+Deliverables:
+
+    A bash script encapsulating the entire deployment process 
+        adhering to the specifications mentioned above.
+    Documentation accompanying the script, 
+       elucidating the steps and procedures for execution.
+    A test PHP page validating the LAMP setup on both nodes 
+    A Load balancer using nginx to allow for traffic to the LAMP using the master 
+       and the slave nodes.
