@@ -4,10 +4,10 @@
 file="vagrantfile"
 
 #create a directory where the script will be executed
-mkdir -p ~/deploy/master
+mkdir -p ~/script/master
 
 #CD to the directory you created
-cd ~/deploy/master
+cd ~/script/master
 
 #initalize vagrant to pull a vagrantfile
 vagrant init ubuntu/trusty64
@@ -35,6 +35,7 @@ end
 EOL
 
 #multi-machine setup
+
 #setup master Node
 cat << EOL >> $file
 config.vm.define "master"  do |master|
@@ -55,40 +56,28 @@ end
 
 EOL
 
-#provisioning script
-cat << EOL >> $file
-#installing DNS to allow interactivity between machines
-
-config.vm.provision "shell", inline: <<-SHELL
- sudo apt update && sudo apt upgrade -y
- sudo apt-get install -y avahi-daemon libnss-mdns
-SHELL
-end
-EOL
-
 #bring up the machines
 vagrant up
 
-#create a user 'altschool and grant root priveleges
-vagrant ssh master -c "sudo useradd -m -G root altschool
+#create a user 'altschool 
+vagrant ssh master -c "sudo useradd -m  altschool"
+
+
 
 #generate ssh key for master node
-vagrant ssh master -c "ssh-keygen -t rsa -b 2048 -f /home/altschool/.ssh/id_rsa -N ''"
+vagrant ssh master -c "ssh-keygen -t rsa -b 2048 -f /home/vagrant/.ssh/id_rsa "
 
 #copy public key to the slave node
-vagrant ssh master -c "ssh-copy-id altschool@slave"
+vagrant ssh master -c "ssh-copy-id slave@192.168.56.21
 
 #create a directory on the master node
 vagrant ssh master -c "sudo mkdir -p ~/mnt/altschool"
 
 #write text in a file and send to the directory
-vagrant ssh master -c "echo "text transfer to slave node" | sudo tee /mnt/altschool/test.txt"
+vagrant ssh master -c "echo "text transfer to slave node" | sudo  /mnt/altschool/altschool.txt"
 
 #transfer to slave node
-vagrant ssh master -c "sudo scp -r /mnt/altschool altschool@slave:/mnt/altschool"
-
-#display running process on the master node
-vagrant ssh master -cls"
+vagrant ssh master -c "sudo scp -r /mnt/altschool slave@192.168.56.21:/mnt/altschool/" 
 
 #lamp stack deployment
 
@@ -108,20 +97,19 @@ sudo systemctl start apache2
 sudo apt-get install mysql-server -y
 
 #secure mysql installation
-sudo mysql_secure_installation <<EOF
+sudo mysql_secure_installation 
 
-EOF
 
 #create mysql user and password
 mysql_root_pass="rawl"
 mysql_usr="Rahleigh"
-mysql_pass ="rawl"
+mysql_password ="rawl"
 
 #create mysql user
 
 sudo mysql -u root -p"$mysql_root_pass" <<MYSQL_SCRIPT
 CREATE DATABASE mydb;
-CREATE USER '$mysql_usr'@'localhost' IDENTIFIED BY '$mysql_pass';
+CREATE USER '$mysql_usr'@'localhost' IDENTIFIED BY '$mysql_password';
 GRANT ALL PRIVILEGES ON mydb.* TO '$mysql_usr'@'localhost';
 FLUSH PRIVILEGES;
 MYSQL_SCRIPT
@@ -130,14 +118,16 @@ MYSQL_SCRIPT
 sudo apt-get install php libapache2-mod-php php-mysql -y
 
 #create a test php file
-echo "<?php phpinfo(); ?>" | sudo tee /var/www/html/info.php
+echo "<?php phpinfo(); ?>" | sudo tee /var/www/html/phpinfo.php
+
 
 #restart apache to apply changes
 sudo systemctl restart apache2
 EOL
 
 #run script on master and slave node
-vagrant ssh master -c '/deploy/master/miniscript.sh'
-vagrant ssh slave -c '/deploy/master/miniscript.sh'
+vagrant ssh master -c '/script/master/miniscript.sh'
+vagrant ssh slave -c '/script/master/miniscript.sh'
 
 chmod +x /deploy/master/miniscript.sh
+
